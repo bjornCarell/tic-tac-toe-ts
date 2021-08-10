@@ -32,7 +32,7 @@
     "**/.gh-pages": true
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": false
+    "source.fixAll.eslint": true
   },
   "eslint.validate": [
     "javascript",

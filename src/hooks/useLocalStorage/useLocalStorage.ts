@@ -1,11 +1,11 @@
+import { useEffect, useRef, useState } from 'react';
 
-import { useEffect, useRef, useState } from "react"
-export const useLocalStorage = (
+export const useLocalStorage = <T>(
   key: string,
-  defaultValue: any,
-  {serialize = JSON.stringify, deserialize = JSON.parse} = {}
-) => {
-  const [value, setValue ] = useState(() => {
+  defaultValue: T,
+  { serialize = JSON.stringify, deserialize = JSON.parse } = {},
+): [T, (value: T) => void] => {
+  const [value, setValue] = useState(() => {
     const storageValue = window.localStorage.getItem(key);
     if (storageValue) {
       return deserialize(storageValue);
@@ -19,7 +19,7 @@ export const useLocalStorage = (
   useEffect(() => {
     const prevKey = prevKeyRef.current;
 
-    if(prevKey !== key) {
+    if (prevKey !== key) {
       window.localStorage.removeItem(prevKey);
     }
     prevKeyRef.current = key;
@@ -27,4 +27,4 @@ export const useLocalStorage = (
   }, [key, value, serialize]);
 
   return [value, setValue];
-}
+};
