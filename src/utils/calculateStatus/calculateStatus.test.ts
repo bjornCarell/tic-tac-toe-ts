@@ -13,6 +13,7 @@ describe('calculate status function', () => {
 
     expect(actual).toBe(expected);
   });
+
   it('should return next value when no winner and still null values', () => {
     const result = ['X', 'X', 'O', 'X', null, null, 'O', 'O'];
     const winner = calculateWinner(result);
@@ -23,6 +24,7 @@ describe('calculate status function', () => {
 
     expect(actual).toBe(expected);
   });
+
   it('should return next value when no winner and no null values', () => {
     const result = ['X', 'X', 'O', 'X', '0', 'X', 'O', 'O'];
     const winner = calculateWinner(result);
