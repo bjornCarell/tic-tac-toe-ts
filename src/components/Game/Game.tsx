@@ -6,13 +6,14 @@ import {
 import { calculateWinner } from '../../utils/calculateWinner/calculateWinner';
 import { calculateStatus } from '../../utils/calculateStatus/calculateStatus';
 import { Board } from '../Board/Board';
+import { Moves } from '../Moves/Moves';
 import '../../Game.css';
 
 export const Game = ():JSX.Element => {
   const [history, setHistory] = useLocalStorage('history', [
     Array(9).fill(null),
   ]);
-  const [currentStep, setCurrentStep] = useLocalStorage('step', 0);
+  const [currentStep, setCurrentStep] = useLocalStorage('currentStep', 0);
 
   const currentSquares = history[currentStep];
   const nextValue = calculateNextValue(currentSquares);
@@ -52,6 +53,11 @@ export const Game = ():JSX.Element => {
       </div>
       <div className="game-info">
         <div>{status}</div>
+        <Moves
+          history={history}
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+        />
       </div>
     </div>
   );
